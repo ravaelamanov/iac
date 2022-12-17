@@ -1,0 +1,48 @@
+---
+- name: "Run Django Local Library Application"
+  hosts: app
+  become: true
+  environment:
+    DJANGO_SUPERUSER_PASSWORD: "pass"
+    DJANGO_SUPERUSER_USERNAME: "user"
+    DJANGO_SUPERUSER_EMAIL: "user@somwhere.com"
+  tasks:
+    - name: "Clone Git Repository"
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        clone: true
+        update: true
+    - name: "Install Apt Packages"
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: "present"
+      with_items:
+        - pip
+        - virtualenv
+        - libpq-dev
+    - name: "Install application requirements"
+      ansible.builtin.pip:
+        requirements: "{{ app_dir }}/requirements.txt"
+        extra_args: "--upgrade"
+    - name: "Make migrations"
+      ansible.builtin.command:
+        cmd: "python3 manage.py makemigrations"
+        chdir: "{{ app_dir }}"
+    - name: "Migrate"
+      ansible.builtin.command:
+        cmd: "python3 manage.py migrate"
+        chdir: "{{ app_dir }}"
+    - name: "Collect static"
+      ansible.builtin.command:
+        cmd: "python3 manage.py collectstatic --noinput"
+        chdir: "{{ app_dir }}"
+    # - name: "Create superuser"
+    #   ansible.builtin.command:
+    #     cmd: "python3 manage.py createsuperuser --noinput"
+    #     chdir: "{{ app_dir }}"
+    - name: "Run server"
+      ansible.builtin.command:
+        cmd: "python3 manage.py runserver 8080"
+        chdir: "{{ app_dir }}"
+...

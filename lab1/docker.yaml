@@ -1,0 +1,41 @@
+---
+- name: "Install Docker to docker hosts"
+  hosts: docker
+  become: true
+
+  tasks:
+    - name: "Install Apt Packages"
+      ansible.builtin.apt:
+        pkg:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: latest
+        update_cache: true
+
+    - name: "Install GPG-keys"
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: "Add Docker Repository"
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: "Install Docker"
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+
+    - name: "Add User to Docker Group"
+      ansible.builtin.user:
+        name: "{{ docker_user }}"
+        groups: docker
+        append: true
