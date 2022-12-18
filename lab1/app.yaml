@@ -43,6 +43,6 @@
     #     chdir: "{{ app_dir }}"
     - name: "Run server"
       ansible.builtin.command:
-        cmd: "python3 manage.py runserver 8080"
+        cmd: "python3 manage.py runserver 0.0.0.0:8080"
         chdir: "{{ app_dir }}"
 ...
