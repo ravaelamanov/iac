@@ -1,0 +1,4 @@
+roles:
+ - src: git+git@gitlab.com:ansible-groups/docker.git
+   version: main
+   name: docker
