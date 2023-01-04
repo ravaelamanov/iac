@@ -4,3 +4,6 @@
 [submodule "nginx"]
 	path = nginx
 	url = git@gitlab.com:ansible-groups/nginx.git
+[submodule "openvpn"]
+	path = openvpn
+	url = git@gitlab.com:ansible-groups/openvpn.git

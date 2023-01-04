@@ -1,0 +1,5 @@
+roles:
+  - src: git+git@gitlab.com:ansible-groups/openvpn.git
+    version: main
+    name: openvpn
+
