@@ -1,0 +1,3 @@
+docker_users: ["vagrant"]
+repo_url: "https://github.com/ravaelamanov/django-locallibrary-tutorial.git"
+app_dir: "/app"
