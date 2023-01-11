@@ -1,0 +1,4 @@
+roles:
+  - src: git+git@gitlab.com:ansible-groups/postgres.git
+    version: main
+    name: postgres 
