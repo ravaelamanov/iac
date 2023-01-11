@@ -7,3 +7,6 @@
 [submodule "openvpn"]
 	path = openvpn
 	url = git@gitlab.com:ansible-groups/openvpn.git
+[submodule "postgres"]
+	path = postgres
+	url = git@gitlab.com:ansible-groups/postgres.git
