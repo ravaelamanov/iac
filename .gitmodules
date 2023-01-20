@@ -10,3 +10,12 @@
 [submodule "postgres"]
 	path = postgres
 	url = git@gitlab.com:ansible-groups/postgres.git
+[submodule "grafana"]
+	path = grafana
+	url = git@gitlab.com:ansible-groups/grafana.git
+[submodule "loki"]
+	path = loki
+	url = git@gitlab.com:ansible-groups/loki.git
+[submodule "prometheus"]
+	path = prometheus
+	url = git@gitlab.com:ansible-groups/prometheus.git
