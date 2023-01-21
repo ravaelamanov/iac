@@ -21,10 +21,4 @@
       copy:
         src: "{{ playbook_dir }}/ovpn-client-conf/server1-client1.ovpn"
         dest: "/home/vagrant/server1-{{ openvpn_client_common_name }}.ovpn"
-
-    #todo
-    # - name: "Enable OpenVPN client connection"
-    #   become: true
-    #   command:
-    #     cmd: "openvpn --config {{ inventory_hostname }}-{{ openvpn_client_common_name }}.ovpn"
 ...
