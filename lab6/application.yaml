@@ -1,0 +1,28 @@
+---
+- name: Setup Application
+  hosts: app
+  become: true
+  environment:
+    - LOGGING_FILE: ".logs/app.log"
+  tasks:
+    - name: Application | Clone Git Repository"
+      ansible.builtin.git:
+        repo: "https://github.com/grafana/spring-boot-demo"
+        dest: "/app"
+        clone: true
+        update: true
+    - name: "Application | Install Apt Packages"
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: "present"
+      with_items:
+        - openjdk-11-jdk
+    - name: "Application | Check if application running"
+      command: 'curl -sf localhost:1235'
+      register: 'curl_result'
+      ignore_errors: true
+    - name: "Application | Run"
+      ansible.builtin.command:
+        cmd: "./gradlew :bootRun --args='--logging.file.path=.logs'"
+        chdir: "/app"
+      when: curl_result.rc != 0

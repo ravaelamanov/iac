@@ -1,0 +1,8 @@
+prometheus_static_configs:
+  targets: ["192.168.56.202:9090"]
+
+prometheus_scrape_configs: |2
+    - job_name: "application"
+      metrics_path: '/actuator/prometheus'
+      static_configs:
+        - targets: ["192.168.56.201:1235"]

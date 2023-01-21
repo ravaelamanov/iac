@@ -1,0 +1,16 @@
+roles:
+  - src: git+https://github.com/patrickjahns/ansible-role-promtail
+    version: master
+    name: promtail
+  # - src: git+https://gitlab.com/ansilbe-roles/ansible-role-docker
+  #   version: main
+  #   name: docker
+  # - src: git+https://gitlab.com/ansilbe-roles/ansible-role-prometheus
+  #   version: main
+  #   name: ansible-role-prometheus
+  # - src: git+https://gitlab.com/ansilbe-roles/ansible-role-grafana
+  #   version: main
+  #   name: ansible-role-grafana
+  # - src: git+https://gitlab.com/ansilbe-roles/ansible-role-loki
+  #   version: main
+  #   name: ansible-role-loki
